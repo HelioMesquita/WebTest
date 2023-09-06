@@ -6,10 +6,10 @@
     <button onClick='goOutside();'>Open external site inside the app</button>
         <script>
         function goInside() {
-            webkit.messageHandlers.goInside.postMessage('https://magnum.htvkubestage.htvapps.com/api/v1/KHTV/content/44600933');
+            webkit.messageHandlers.segue.postMessage('https://magnum.htvkubestage.htvapps.com/api/v1/KHTV/content/44600933');
         }
         function goOutside() {
-            webkit.messageHandlers.goOutside.postMessage('https://www.wesh.com/');
+            webkit.messageHandlers.segue.postMessage('https://www.wesh.com/');
         }
     </script>
 </html>
