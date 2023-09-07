@@ -1,15 +1,27 @@
 <html>    
     <meta content='width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=YES;' name='viewport'/>
     <h1>Custom WebView Cell with JS observers</h1>
-    
-    <button onClick='goInside();'>Open another article inside the app</button>
-    <button onClick='goOutside();'>Open external site inside the app</button>
-        <script>
+    <body onload="isNative()">
+        <h2>This web page is running on <span id="message"></span></h1>
+
+        <button onClick='goInside();'>Open another article inside the app</button>
+        <button onClick='goOutside();'>Open external site inside the app</button>
+    </body>
+    <script>
         function goInside() {
             webkit.messageHandlers.segue.postMessage('https://magnum.htvkubestage.htvapps.com/api/v1/KHTV/content/44600933');
         }
         function goOutside() {
             webkit.messageHandlers.segue.postMessage('https://www.wesh.com/');
         }
+        function isNative() {
+            const isNative = localStorage.getItem("isNative");
+            var message = "browser"
+            if (isNative) {
+                message = "app"
+            }
+            document.getElementById("message").innerHTML = message;
+        }
+        
     </script>
 </html>
