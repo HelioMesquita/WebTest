@@ -6,10 +6,14 @@
 
         <button onClick='goInside();'>Open another article inside the app</button>
         <button onClick='goOutside();'>Open external site inside the app</button>
+        <button onClick='goAndroid();'>Open external site inside the app - Android Test</button>
     </body>
     <script>
         function goInside() {
             webkit.messageHandlers.segue.postMessage('https://magnum.htvkubestage.htvapps.com/api/v1/KHTV/content/44600933');
+        }
+        function goAndroid() {
+            HTVJavascriptInterface.openUrl("www.google.com", true)
         }
         function goOutside() {
             webkit.messageHandlers.segue.postMessage('https://www.amazon.com/');
