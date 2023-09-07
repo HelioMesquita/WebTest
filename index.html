@@ -1,13 +1,14 @@
 <html>    
     <meta content='width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=YES;' name='viewport'/>
     <h1>Custom WebView Cell with JS observers</h1>
-    <body onload="isNative()">
-        <h2>This web page is running on <span id="message"></span></h1>
+    <body onload="checkIfIsRunningInApp()">
+        <h2>This web page is running in the <span id="isRunningInApp"></span></h2>
 
         <button onClick='goiOSInside();'>Open another article inside the app - iOS</button>
         <button onClick='goiOSOutside();'>Open external site inside the app - iOS</button>
-        <button onClick='goAndroidInside();'>Open another article inside the app - Android</button>
-        <button onClick='goAndroidOutside();'>Open external site inside the app - Android</button>
+        
+        <button onClick='openOnInternalBrowserAndroid();'>Open article inside the app - Android</button>
+        <button onClick='openOnExternalBrowserAndroid();'>Open article outside the app - Android</button>
     </body>
     <script>
         function goiOSInside() {
@@ -16,19 +17,34 @@
         function goiOSOutside() {
             webkit.messageHandlers.segue.postMessage('https://www.amazon.com/');
         }
-        function goAndroidInside() {
-            HTVJavascriptInterface.openUrlInsideApp('https://magnum.htvkubestage.htvapps.com/api/v1/KHTV/content/44600933');
+        function openOnInternalBrowserAndroid() {
+            AndroidJSInterface.openUrlInsideApp('https://www.khtvnews.com/article/hello-summer-time/44600933');
         }
-        function goAndroidOutside() {
-            HTVJavascriptInterface.openUrlInsideApp('https://www.amazon.com/')
+        function openOnExternalBrowserAndroid() {
+            AndroidJSInterface.openUrlInExternalBrowser('https://www.khtvnews.com/article/hello-summer-time/44600933');
         }
-        function isNative() {
-            const isNative = localStorage.getItem("isNative");
-            var message = "browser"
-            if (isNative) {
-                message = "app"
+        
+        function isRunningInsideTheApp() {
+            try {
+                return localStorage.getItem("isNative");
+            } catch (error) {
+                try {
+                    return AndroidJSInterface.isNative();
+                } catch (error2) {
+                    return false;
+                }
             }
-            document.getElementById("message").innerHTML = message;
+        }
+        
+        function checkIfIsRunningInApp() {
+            var message = "browser";
+            const isInsideApp = isRunningInsideTheApp();
+            
+            if (isInsideApp) {
+                message = "app";
+            } 
+            
+            document.getElementById("isRunningInApp").innerHTML = message;
         }
         
     </script>
