@@ -4,48 +4,54 @@
     <body onload="checkIfIsRunningInApp()">
         <h2>This web page is running in the <span id="isRunningInApp"></span></h2>
 
-        <button onClick='goiOSInside();'>Open another article inside the app - iOS</button>
-        <button onClick='goiOSOutside();'>Open external site inside the app - iOS</button>
-        
-        <button onClick='openOnInternalBrowserAndroid();'>Open article inside the app - Android</button>
-        <button onClick='openOnExternalBrowserAndroid();'>Open article outside the app - Android</button>
+        <button onClick='openLink("https://www.amazon.com");'>Link WITH JS EVENT, and IT IS NOT an HTV article, it should open the new page OVER the current article.</button>
+        <button onClick='openLink("https://khtvnews.com/article/ios-17-release-new-iphone-features/45195842");'>Link WITH JS EVENT, and IT IS an HTV article, it should open the article inside the app.</button>
+        <button href="https://www.amazon.com">Link WITHOUT JS EVENT, and IT IS NOT an HTV article, it should open the Safari app.</button>
+        <button href="https://khtvnews.com/article/ios-17-release-new-iphone-features/45195842">Link WITHOUT JS EVENT, and IT IS an HTV article, it should open the article inside the app.</button>
+
     </body>
     <script>
-        function goiOSInside() {
-            webkit.messageHandlers.segue.postMessage('https://magnum.htvkubestage.htvapps.com/api/v1/KHTV/content/44600933');
+        function openInternaliOS(url) {
+            webkit.messageHandlers.segue.postMessage(url);
         }
-        function goiOSOutside() {
-            webkit.messageHandlers.segue.postMessage('https://www.amazon.com/');
+        function openInternalAndroid(url) {
+            AndroidJSInterface.openUrlInsideApp(url);
         }
-        function openOnInternalBrowserAndroid() {
-            AndroidJSInterface.openUrlInsideApp('https://www.khtvnews.com/article/hello-summer-time/44600933');
+        function openLink(url) {
+            if (isRunningIniOS()) {
+                openInternaliOS(url);
+            }
+            else if (isRunningInAndroid()) {
+                openInternalAndroid(url);
+            }
+            else {
+                window.open(url, '_blank');
+            }
         }
-        function openOnExternalBrowserAndroid() {
-            AndroidJSInterface.openUrlInExternalBrowser('https://www.khtvnews.com/article/hello-summer-time/44600933');
-        }
-        
-        function isRunningInsideTheApp() {
+        function isRunningIniOS() {
             try {
                 return localStorage.getItem("isNative");
             } catch (error) {
-                try {
-                    return AndroidJSInterface.isNative();
-                } catch (error2) {
-                    return false;
-                }
+                return false;
             }
         }
-        
+        function isRunningInAndroid() {
+            try {
+                return AndroidJSInterface.isNative();
+            } catch (error) {
+                return false;
+            }
+        }
+        function isRunningInsideTheApp() {
+            return isRunningIniOS() || isRunningInAndroid();
+        }
         function checkIfIsRunningInApp() {
             var message = "browser";
             const isInsideApp = isRunningInsideTheApp();
-            
             if (isInsideApp) {
                 message = "app";
             } 
-            
             document.getElementById("isRunningInApp").innerHTML = message;
-        }
-        
+        } 
     </script>
 </html>
