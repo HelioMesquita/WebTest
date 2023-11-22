@@ -1,61 +1,53 @@
-<html>    
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">    <h1>Custom WebView Cell with JS observers</h1>
-    <body onload="checkIfIsRunningInApp()">
-        <h2>This web page is running in the <span id="isRunningInApp"></span></h2>
+<style>
+    .button {
+      color: #0066cc;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      margin: 4px 2px;
+      cursor: pointer;
+      font-size: 18px;
+      font-weight: bold;
+      border: none;
+      background-color: transparent;
+      outline: none;
+    }
+    </style>
 
-        <button onClick='openLink("https://www.amazon.com");'>Link WITH JS EVENT, and IT IS NOT an HTV article, it should open the new page OVER the current article.</button>
-        <button onClick='openLink("https://khtvnews.com/article/ios-17-release-new-iphone-features/45195842");'>Link WITH JS EVENT, and IT IS an HTV article, it should open the article inside the app.</button>
-        <a href="https://www.amazon.com" target="_blank">
-            <button>Link WITHOUT JS EVENT, and IT IS NOT an HTV article, it should open the Safari app.</button>
-        </a>
-        <a href="https://khtvnews.com/article/ios-17-release-new-iphone-features/45195842" target="_blank">
-            <button>Link WITHOUT JS EVENT, and IT IS an HTV article, it should open the article inside the app.</button>
-        </a>
-
-    </body>
-    <script>
-        function openInternaliOS(url) {
-            webkit.messageHandlers.segue.postMessage(url);
+<div style="width:100%; text-align:center;">
+    <button class="button" onClick='openLink("https://www.puzzmo.com/today");'>Play in Full Screen</button>
+</div>
+<script>
+    function openInternaliOS(url) {
+        webkit.messageHandlers.openFullScreenViewController.postMessage(url);
+    }
+    function openInternalAndroid(url) {
+        AndroidJSInterface.openUrlInsideApp(url);
+    }
+    function openLink(url) {
+        if (isRunningIniOS()) {
+            openInternaliOS(url);
         }
-        function openInternalAndroid(url) {
-            AndroidJSInterface.openUrlInsideApp(url);
+        else if (isRunningInAndroid()) {
+            openInternalAndroid(url);
         }
-        function openLink(url) {
-            if (isRunningIniOS()) {
-                openInternaliOS(url);
-            }
-            else if (isRunningInAndroid()) {
-                openInternalAndroid(url);
-            }
-            else {
-                window.open(url, '_blank');
-            }
+        else {
+            window.open(url, '_blank');
         }
-        function isRunningIniOS() {
-            try {
-                return localStorage.getItem("isNative");
-            } catch (error) {
-                return false;
-            }
+    }
+    function isRunningIniOS() {
+        try {
+            return localStorage.getItem("isNative");
+        } catch (error) {
+            return false;
         }
-        function isRunningInAndroid() {
-            try {
-                return AndroidJSInterface.isNative();
-            } catch (error) {
-                return false;
-            }
+    }
+    function isRunningInAndroid() {
+        try {
+            return AndroidJSInterface.isNative();
+        } catch (error) {
+            return false;
         }
-        function isRunningInsideTheApp() {
-            return isRunningIniOS() || isRunningInAndroid();
-        }
-        function checkIfIsRunningInApp() {
-            var message = "browser";
-            const isInsideApp = isRunningInsideTheApp();
-            if (isInsideApp) {
-                message = "app";
-            } 
-            document.getElementById("isRunningInApp").innerHTML = message;
-        } 
-    </script>
-</html>
+    }
+</script>
