@@ -17,11 +17,16 @@
             background-color: transparent;
             outline: none;
         }
-
-        .div {
+        .divButton {
             height: 40px;
             width: 100%;
             text-align: center;
+        }
+        .divIframe {
+            position: relative;
+            padding-bottom: 620%;
+            height: 0;
+            overflow: hidden;
         }
         iframe {
             position: absolute;
@@ -34,11 +39,11 @@
 </head>
 
 <body onload="getParameters()">
-    <div class="div" id="buttonDiv">
+    <div class="divButton" id="buttonDiv">
         <button class="button" onClick='openLink();'><span id="buttonTitle"></span></button>
     </div>
     <br>
-    <div id="divIframe"></div>
+    <div class="divIframe" id="divIframe"></div>
     <script>
         let url;
         function openInternaliOS(url) {
@@ -78,8 +83,9 @@
 
             var iframe = document.createElement('iframe');
             iframe.src = url
+            iframe.scrolling = "no"
+            iframe.frameBorder = "0"
             document.getElementById("divIframe").appendChild(iframe);
-
 
             const buttonTitle = urlParams.get('buttonTitle');
             if (buttonTitle == null) {
