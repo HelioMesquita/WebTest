@@ -1,53 +1,69 @@
-<style>
-    .button {
-      color: #0066cc;
-      padding: 15px 32px;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
-      margin: 4px 2px;
-      cursor: pointer;
-      font-size: 18px;
-      font-weight: bold;
-      border: none;
-      background-color: transparent;
-      outline: none;
-    }
-    </style>
+<!DOCTYPE html>
+<html>
 
-<div style="width:100%; text-align:center;">
-    <button class="button" onClick='openLink("https://www.puzzmo.com/today");'>Play in Full Screen</button>
-</div>
-<script>
-    function openInternaliOS(url) {
-        webkit.messageHandlers.openFullScreenViewController.postMessage(url);
-    }
-    function openInternalAndroid(url) {
-        AndroidJSInterface.openUrlInsideApp(url);
-    }
-    function openLink(url) {
-        if (isRunningIniOS()) {
-            openInternaliOS(url);
+<head>
+    <style>
+        .button {
+            color: #0066cc;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            margin: 4px 2px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            background-color: transparent;
+            outline: none;
         }
-        else if (isRunningInAndroid()) {
-            openInternalAndroid(url);
+
+        div {
+            height: 40px;
+            width: 100%;
+            text-align: center;
         }
-        else {
-            window.open(url, '_blank');
+    </style>
+</head>
+
+<body>
+    <div>
+        <button class="button" onClick='openLink("https://www.puzzmo.com/today");'>Play in Full Screen</button>
+    </div>
+    <script>
+        function openInternaliOS(url) {
+            webkit.messageHandlers.openFullScreenViewController.postMessage(url);
         }
-    }
-    function isRunningIniOS() {
-        try {
-            return localStorage.getItem("isNative");
-        } catch (error) {
-            return false;
+        function openInternalAndroid(url) {
+            AndroidJSInterface.openUrlInsideApp(url);
         }
-    }
-    function isRunningInAndroid() {
-        try {
-            return AndroidJSInterface.isNative();
-        } catch (error) {
-            return false;
+        function openLink(url) {
+            if (isRunningIniOS()) {
+                openInternaliOS(url);
+            }
+            else if (isRunningInAndroid()) {
+                openInternalAndroid(url);
+            }
+            else {
+                window.open(url, '_blank');
+            }
         }
-    }
-</script>
+        function isRunningIniOS() {
+            try {
+                return localStorage.getItem("isNative");
+            } catch (error) {
+                return false;
+            }
+        }
+        function isRunningInAndroid() {
+            try {
+                return AndroidJSInterface.isNative();
+            } catch (error) {
+                return false;
+            }
+        }
+    </script>
+
+</body>
+
+</html>
