@@ -81,9 +81,6 @@
             }
         }
         function getParameters() {
-
-            
-
             const urlParams = new URLSearchParams(window.location.search);
             url = urlParams.get('url');
 
@@ -92,27 +89,6 @@
             iframe.scrolling = "no"
             iframe.frameBorder = "0"
             document.getElementById("divIframe").appendChild(iframe);
-
-            var localData = localDataStorage(url);
-            const userData =
-            {
-                "userState": {
-                    "id": "LHmYxxiVUIyYzEB0Ibtka:userstate",
-                    "ownerID": "LHmYxxiVUIyYzEB0Ibtka",
-                    "nakamaLogin": "LHmYxxiVUIyYzEB0Ibtka@guest.puzzmo.com",
-                    "nakamaPassword": "LHmYxxiVUIyYzEB0Ibtka",
-                    "gameSettings": {},
-                    "cookieConsent": null,
-                    "policy": "COPPA",
-                    "country": "US"
-                },
-                "currentUser": null
-            };
-
-            localData.setItem("puzmoGameplayIDFallback", "LHmYxxiVUIyYzEB0Ibtka");
-            localData.setItem("has_access", true)
-            localData.setItem("EXPO_CONSTANTS_INSTALLATION_ID", "cced9ef2-504b-48dd-b5fd-686116dcfd6d")
-            localData.setItem("puzmoUserModel", JSON.stringify(userData));
 
             const buttonTitle = urlParams.get('buttonTitle');
             if (buttonTitle == null) {
