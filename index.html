@@ -109,6 +109,7 @@
             iframe.src = url
             iframe.scrolling = "no"
             iframe.frameBorder = "0"
+            iframe.localStorage = localStorage
             document.getElementById("divIframe").appendChild(iframe);
 
             const buttonTitle = urlParams.get('buttonTitle');
