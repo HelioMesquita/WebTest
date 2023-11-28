@@ -91,9 +91,6 @@
             iframe.src = url
             iframe.scrolling = "no"
             iframe.frameBorder = "0"
-            contentWindow.localStorage.setItem("puzmoGameplayIDFallback", "LHmYxxiVUIyYzEB0Ibtka");
-            contentWindow.localStorage.setItem("has_access", true)
-            contentWindow.localStorage.setItem("EXPO_CONSTANTS_INSTALLATION_ID", "cced9ef2-504b-48dd-b5fd-686116dcfd6d")
             const userData =
             {
                 "userState": {
@@ -107,11 +104,13 @@
                     "country": "US"
                 },
                 "currentUser": null
-            }
-                ;
-            contentWindow.localStorage.setItem("puzmoUserModel", JSON.stringify(userData));
+            };
 
             document.getElementById("divIframe").appendChild(iframe);
+            document.getElementById("divIframe").contentWindow.document.localStorage.setItem("puzmoGameplayIDFallback", "LHmYxxiVUIyYzEB0Ibtka");
+            document.getElementById("divIframe").contentWindow.document.localStorage.setItem("has_access", true)
+            document.getElementById("divIframe").contentWindow.document.localStorage.setItem("EXPO_CONSTANTS_INSTALLATION_ID", "cced9ef2-504b-48dd-b5fd-686116dcfd6d")
+            document.getElementById("divIframe").contentWindow.document.localStorage.setItem("puzmoUserModel", JSON.stringify(userData));
 
             const buttonTitle = urlParams.get('buttonTitle');
             if (buttonTitle == null) {
