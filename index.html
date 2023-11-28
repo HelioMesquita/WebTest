@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <style>
         .button {
@@ -16,17 +17,20 @@
             background-color: transparent;
             outline: none;
         }
+
         .divButton {
             height: 40px;
             width: 100%;
             text-align: center;
         }
+
         .divIframe {
             position: relative;
             padding-bottom: 620%;
             height: 0;
             overflow: hidden;
         }
+
         iframe {
             position: absolute;
             top: 0;
@@ -36,6 +40,7 @@
         }
     </style>
 </head>
+
 <body onload="getParameters()">
     <div class="divButton" id="buttonDiv">
         <button class="button" onClick='openLink();'><span id="buttonTitle"></span></button>
@@ -76,7 +81,7 @@
             }
         }
         function getParameters() {
-            
+
             const urlParams = new URLSearchParams(window.location.search);
             url = urlParams.get('url');
 
@@ -96,9 +101,24 @@
             localStorage.setItem("puzmoGameplayIDFallback", "LHmYxxiVUIyYzEB0Ibtka");
             localStorage.setItem("has_access", true)
             localStorage.setItem("EXPO_CONSTANTS_INSTALLATION_ID", "cced9ef2-504b-48dd-b5fd-686116dcfd6d")
-            // localStorage.setItem("puzmoUserModel", '{"userState":{"id":"LHmYxxiVUIyYzEB0Ibtka:userstate","ownerID":"LHmYxxiVUIyYzEB0Ibtka","nakamaLogin":"LHmYxxiVUIyYzEB0Ibtka@guest.puzzmo.com","nakamaPassword":"LHmYxxiVUIyYzEB0Ibtka","gameSettings":{},"cookieConsent":null,"policy":"COPPA","country":"US"},"currentUser":null}');
-
+            const userData =
+            {
+                "userState": {
+                    "id": "LHmYxxiVUIyYzEB0Ibtka:userstate",
+                    "ownerID": "LHmYxxiVUIyYzEB0Ibtka",
+                    "nakamaLogin": "LHmYxxiVUIyYzEB0Ibtka@guest.puzzmo.com",
+                    "nakamaPassword": "LHmYxxiVUIyYzEB0Ibtka",
+                    "gameSettings": {},
+                    "cookieConsent": null,
+                    "policy": "COPPA",
+                    "country": "US"
+                },
+                "currentUser": null
+            }
+                ;
+            localStorage.setItem("puzmoUserModel", JSON.stringify(userData));
         }
     </script>
 </body>
+
 </html>
