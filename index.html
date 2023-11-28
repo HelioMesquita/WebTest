@@ -82,22 +82,6 @@
         }
         function getParameters() {
 
-            const urlParams = new URLSearchParams(window.location.search);
-            url = urlParams.get('url');
-
-            var iframe = document.createElement('iframe');
-            iframe.src = url
-            iframe.scrolling = "no"
-            iframe.frameBorder = "0"
-            document.getElementById("divIframe").appendChild(iframe);
-
-            const buttonTitle = urlParams.get('buttonTitle');
-            if (buttonTitle == null) {
-                document.getElementById("buttonDiv").setAttribute("hidden", "hidden");
-            } else {
-                document.getElementById("buttonTitle").innerHTML = buttonTitle;
-            }
-
             localStorage.setItem("puzmoGameplayIDFallback", "LHmYxxiVUIyYzEB0Ibtka");
             localStorage.setItem("has_access", true)
             localStorage.setItem("EXPO_CONSTANTS_INSTALLATION_ID", "cced9ef2-504b-48dd-b5fd-686116dcfd6d")
@@ -117,6 +101,22 @@
             }
                 ;
             localStorage.setItem("puzmoUserModel", JSON.stringify(userData));
+            
+            const urlParams = new URLSearchParams(window.location.search);
+            url = urlParams.get('url');
+
+            var iframe = document.createElement('iframe');
+            iframe.src = url
+            iframe.scrolling = "no"
+            iframe.frameBorder = "0"
+            document.getElementById("divIframe").appendChild(iframe);
+
+            const buttonTitle = urlParams.get('buttonTitle');
+            if (buttonTitle == null) {
+                document.getElementById("buttonDiv").setAttribute("hidden", "hidden");
+            } else {
+                document.getElementById("buttonTitle").innerHTML = buttonTitle;
+            }
         }
     </script>
 </body>
