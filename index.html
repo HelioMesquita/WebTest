@@ -91,9 +91,9 @@
             iframe.src = url
             iframe.scrolling = "no"
             iframe.frameBorder = "0"
-            iframe.contentWindow.localStorage.setItem("puzmoGameplayIDFallback", "LHmYxxiVUIyYzEB0Ibtka");
-            iframe.contentWindow.localStorage.setItem("has_access", true)
-            iframe.contentWindow.localStorage.setItem("EXPO_CONSTANTS_INSTALLATION_ID", "cced9ef2-504b-48dd-b5fd-686116dcfd6d")
+            contentWindow.localStorage.setItem("puzmoGameplayIDFallback", "LHmYxxiVUIyYzEB0Ibtka");
+            contentWindow.localStorage.setItem("has_access", true)
+            contentWindow.localStorage.setItem("EXPO_CONSTANTS_INSTALLATION_ID", "cced9ef2-504b-48dd-b5fd-686116dcfd6d")
             const userData =
             {
                 "userState": {
@@ -109,7 +109,7 @@
                 "currentUser": null
             }
                 ;
-            iframe.contentWindow.localStorage.setItem("puzmoUserModel", JSON.stringify(userData));
+            contentWindow.localStorage.setItem("puzmoUserModel", JSON.stringify(userData));
 
             document.getElementById("divIframe").appendChild(iframe);
 
