@@ -91,6 +91,9 @@
             iframe.src = url
             iframe.scrolling = "no"
             iframe.frameBorder = "0"
+            document.getElementById("divIframe").appendChild(iframe);
+
+            var localData = localDataStorage('puzzmo.com');
             const userData =
             {
                 "userState": {
@@ -106,11 +109,10 @@
                 "currentUser": null
             };
 
-            document.getElementById("divIframe").appendChild(iframe);
-            document.getElementById("divIframe").contentWindow.localStorage.setItem("puzmoGameplayIDFallback", "LHmYxxiVUIyYzEB0Ibtka");
-            document.getElementById("divIframe").contentWindow.localStorage.setItem("has_access", true)
-            document.getElementById("divIframe").contentWindow.localStorage.setItem("EXPO_CONSTANTS_INSTALLATION_ID", "cced9ef2-504b-48dd-b5fd-686116dcfd6d")
-            document.getElementById("divIframe").contentWindow.localStorage.setItem("puzmoUserModel", JSON.stringify(userData));
+            localData.setItem("puzmoGameplayIDFallback", "LHmYxxiVUIyYzEB0Ibtka");
+            localData.setItem("has_access", true)
+            localData.setItem("EXPO_CONSTANTS_INSTALLATION_ID", "cced9ef2-504b-48dd-b5fd-686116dcfd6d")
+            localData.setItem("puzmoUserModel", JSON.stringify(userData));
 
             const buttonTitle = urlParams.get('buttonTitle');
             if (buttonTitle == null) {
