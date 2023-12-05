@@ -42,7 +42,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            pointer-events: none;
+            /* pointer-events: none; */
         }
     </style>
 </head>
@@ -54,6 +54,9 @@
     <div class="divIframe" id="divIframe"></div>
     <div class="divOverlay" id="divOverlay" onClick='openLink();'></div>
     <script>
+        window.addEventListener("mouseup", (e) => {
+            openLink();
+        });
         let url;
         function openInternaliOS(url) {
             webkit.messageHandlers.openFullScreenViewController.postMessage(url);
