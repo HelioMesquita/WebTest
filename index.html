@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <style>
         .button {
@@ -17,20 +16,26 @@
             background-color: transparent;
             outline: none;
         }
-
         .divButton {
             height: 40px;
             width: 100%;
             text-align: center;
         }
-
+        .divOverlay {
+            position: absolute;
+            top: 60px;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            text-align: center;
+            opacity: 0;
+        }
         .divIframe {
             position: relative;
             padding-bottom: 620%;
             height: 0;
             overflow: hidden;
         }
-
         iframe {
             position: absolute;
             top: 0;
@@ -40,13 +45,13 @@
         }
     </style>
 </head>
-
 <body onload="getParameters()">
     <div class="divButton" id="buttonDiv">
         <button class="button" onClick='openLink();'><span id="buttonTitle"></span></button>
     </div>
     <br>
     <div class="divIframe" id="divIframe"></div>
+    <div class="divOverlay" id="divOverlay" onClick='openLink();'></div>
     <script>
         let url;
         function openInternaliOS(url) {
@@ -81,6 +86,7 @@
             }
         }
         function getParameters() {
+            
             const urlParams = new URLSearchParams(window.location.search);
             url = urlParams.get('url');
 
@@ -99,5 +105,4 @@
         }
     </script>
 </body>
-
 </html>
