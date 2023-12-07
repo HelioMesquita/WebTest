@@ -39,10 +39,10 @@
         }
         iframe {
             position: absolute;
-            top: 0;
-            left: 0;
+            top: 100;
+            left: 100;
             width: 100%;
-            height: 100%;
+            height: 1000;
             pointer-events: none;
         }
     </style>
@@ -94,7 +94,7 @@
 
             var iframe = document.createElement('iframe');
             iframe.src = url
-            // iframe.scrolling = "no"
+            iframe.scrolling = "yes"
             // iframe.frameBorder = "0"
             document.getElementById("divIframe").appendChild(iframe);
 
