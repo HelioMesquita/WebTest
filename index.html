@@ -38,7 +38,7 @@
             z-index: 9999;
         }
         iframe {
-            position: absolute;
+            /* position: absolute; */
             top: 100;
             left: 0;
             width: 100%;
@@ -48,11 +48,11 @@
     </style>
 </head>
 <body onload="getParameters()">
-    <!-- <div class="divButton" id="buttonDiv">
-        
+    <div class="divButton" id="buttonDiv">
+        <button class="button" onClick='openLink();'><span id="buttonTitle"></span></button>    
     </div>
-    <br> -->
-    <button class="button" onClick='openLink();'><span id="buttonTitle"></span></button>
+    <br>
+    
     <!-- <div class="divOverlay" id="divOverlay" onClick='openLink();'></div> -->
     <div class="divIframe" id="divIframe" onClick='openLink();'></div>
     <script>
