@@ -2,7 +2,7 @@
 <html>
 <head>
     <style>
-        .body {
+        /* .body {
             border: none;
         }
         .button {
@@ -41,7 +41,7 @@
             height: 100%;
             pointer-events: none;
             border: none;
-        }
+        } */
     </style>
 </head>
 <body draggable="false" onload="getParameters()">
@@ -90,7 +90,7 @@
 
             var iframe = document.createElement('iframe');
             iframe.src = url
-            // iframe.scrolling = "yes"
+            iframe.scrolling = "yes"
             iframe.frameBorder = "0"
             document.getElementById("divIframe").appendChild(iframe);
 
