@@ -21,7 +21,6 @@
         }
         .divButton {
             height: 40px;
-            width: 100%;
             text-align: center;
         }
         .divOverlay {
@@ -45,8 +44,8 @@
         }
     </style>
 </head>
-<body draggable="false" onload="getParameters()">
-    <div class="divButton" id="buttonDiv">
+<body onload="getParameters()">
+    <div draggable="false" class="divButton" id="buttonDiv">
         <button class="button" onClick='openLink();'><span id="buttonTitle"></span></button>    
     </div>
     <br>
