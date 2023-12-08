@@ -24,7 +24,7 @@
             position: static;
         }
         .divIframe {
-            pointer-events: none;
+            /* pointer-events: none; */
         }
         iframe {
             width: 100%;
@@ -82,6 +82,10 @@
             iframe.scrolling = "yes"
             iframe.frameBorder = "0"
             document.getElementById("divIframe").appendChild(iframe);
+
+            if (isRunningIniOS() || isRunningInAndroid()) {
+                document.getElementById("divOverlay").style.pointerEvents = "none";
+            }
 
             const buttonTitle = urlParams.get('buttonTitle');
             if (buttonTitle == null) {
